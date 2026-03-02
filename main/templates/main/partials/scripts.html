@@ -1,0 +1,70 @@
+<!-- Alpine Store + Component Logic -->
+<script>
+    const PRODUCTS = [
+        { id: 1, name: "Midnight Velvet", price: 85.00, category: "Bouquets", image: "https://picsum.photos/id/106/800/1000", description: "Deep red roses paired with dark eucalyptus." },
+        { id: 2, name: "Winter Solstice", price: 120.00, category: "Wedding", image: "https://picsum.photos/id/249/800/1000", description: "White proteas and berries for a snowy feel." },
+        { id: 3, name: "Gothic Romance", price: 95.00, category: "Roses", image: "https://picsum.photos/id/306/800/1000", description: "Black baccara roses with dried accents." },
+        { id: 4, name: "Ethereal Dream", price: 65.00, category: "Dried Flowers", image: "https://picsum.photos/id/360/800/1000", description: "Preserved lavender and cotton stems." },
+        { id: 5, name: "Royal Crimson", price: 150.00, category: "Bouquets", image: "https://picsum.photos/id/517/800/1000", description: "A large arrangement of burgundy peonies." },
+        { id: 6, name: "Golden Hour", price: 75.00, category: "Dried Flowers", image: "https://picsum.photos/id/625/800/1000", description: "Dried wheat and gold-sprayed leaves." },
+    ];
+
+    const CATEGORIES = ['All', 'Bouquets', 'Roses', 'Dried Flowers', 'Wedding'];
+
+    function store() {
+        return {
+            /* --- State --- */
+            cart: [],
+            isCartOpen: false,
+            activeCategory: 'All',
+            isScrolled: false,
+
+            /* --- Init --- */
+            init() {
+                window.addEventListener('scroll', () => {
+                    this.isScrolled = window.scrollY > 50;
+                });
+            },
+
+            /* --- Products / Catalog --- */
+            get filteredProducts() {
+                if (this.activeCategory === 'All') return PRODUCTS;
+                return PRODUCTS.filter(p => p.category === this.activeCategory);
+            },
+
+            /* --- Cart --- */
+            get cartCount() {
+                return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            },
+            get cartTotal() {
+                return this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+            },
+            addToCart(product) {
+                const existing = this.cart.find(i => i.id === product.id);
+                if (existing) {
+                    existing.quantity++;
+                } else {
+                    this.cart.push({ ...product, quantity: 1 });
+                }
+                this.isCartOpen = true;
+            },
+            updateQty(id, delta) {
+                const item = this.cart.find(i => i.id === id);
+                if (item) {
+                    item.quantity = Math.max(1, item.quantity + delta);
+                }
+            },
+            removeItem(id) {
+                this.cart = this.cart.filter(i => i.id !== id);
+            },
+
+            /* --- Helpers --- */
+            scrollToCatalog() {
+                document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+            },
+            formatPrice(price) {
+                return '$' + Number(price).toFixed(2);
+            }
+        };
+    }
+</script>

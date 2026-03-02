@@ -1,0 +1,46 @@
+<!-- ===========================  CONTACT  =========================== -->
+<section class="py-24 px-6 md:px-12 lg:px-24 bg-primary border-t border-white/5 flex flex-col md:flex-row gap-16">
+
+    <!-- Left: text -->
+    <div class="md:w-1/2">
+        <h2 class="text-3xl md:text-5xl font-serif text-white mb-8 leading-tight">
+            LET'S CREATE <br />
+            <span class="text-dim">SOMETHING BEAUTIFUL</span>
+        </h2>
+        <p class="text-dim tracking-wide leading-relaxed max-w-sm mb-12">
+            Whether you need a custom arrangement for a special occasion or want to subscribe to our weekly
+            delivery, we are here to help.
+        </p>
+        <div class="space-y-2 text-white">
+            <p class="tracking-widest text-sm">HELLO@VELVETPETALS.COM</p>
+            <p class="tracking-widest text-sm">+1 (555) 012-3456</p>
+        </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="md:w-1/2">
+        <form class="space-y-8" @submit.prevent="">
+            <div class="grid grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <label class="text-xs uppercase tracking-widest text-dim">Name</label>
+                    <input type="text"
+                        class="w-full bg-transparent border-b border-white/20 py-2 text-white focus:border-accent focus:outline-none transition-colors" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs uppercase tracking-widest text-dim">Phone</label>
+                    <input type="tel"
+                        class="w-full bg-transparent border-b border-white/20 py-2 text-white focus:border-accent focus:outline-none transition-colors" />
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="text-xs uppercase tracking-widest text-dim">Message</label>
+                <textarea rows="4"
+                    class="w-full bg-transparent border-b border-white/20 py-2 text-white focus:border-accent focus:outline-none transition-colors resize-none"></textarea>
+            </div>
+            <button type="submit"
+                class="uppercase tracking-[0.2em] text-xs font-semibold py-4 px-8 transition-all duration-300 flex items-center justify-center gap-2 border border-white/20 text-white hover:border-accent hover:text-accent w-full md:w-auto">
+                Send Request
+            </button>
+        </form>
+    </div>
+</section>
